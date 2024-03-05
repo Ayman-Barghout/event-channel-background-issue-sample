@@ -17,7 +17,7 @@ import java.util.*
 
 class EventChannelBackgroundIssuePlugin : FlutterPlugin, ActivityAware, Service() {
 
-    private val tag: String = "<< From EventChannelBackgroundIssuePlugin >>"
+    private val tag: String = "<<  EventChannel >>"
     private var eventChannelOne: EventChannel? = null
 
     override fun onAttachedToEngine(@NonNull flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
@@ -76,7 +76,7 @@ class EventChannelBackgroundIssuePlugin : FlutterPlugin, ActivityAware, Service(
                 .setContentTitle("My Foreground Service")
                 .setContentText("<-> My Foreground Service <->")
                 .setContentIntent(PendingIntent.getActivity(this,
-                        0, Intent(), 0))
+                        0, Intent(), PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT))
                 .build()
         startForeground(1, notification)
     }
